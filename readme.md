@@ -84,10 +84,14 @@ A través del comando run y algunos parámetros generamos el contenedor asociado
     docker rmi redis-docker
 
 
-### 4. Acceso interno al contenedor:
+### 4. Otros comandos:
 
-    Por último, uno de los comandos más importantes es: 
+    Acceso interno al contenedor:
     docker exec -it redis-docker bash
+
+    Vista de los procesos en ejecución:
+    docker ps
+
 
 
 <div class="footer">
