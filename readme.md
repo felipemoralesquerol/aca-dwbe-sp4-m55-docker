@@ -64,30 +64,30 @@ La salida es la siguiente:
 ### 2. Creación de contenedor (container) (run)
 A través del comando run y algunos parámetros generamos el contenedor asociado, y lo arranca automáticamente:
 
-    docker run --name redis-docker -p 6380:6379 -d redis
+    docker run --name redis-container -p 6380:6379 -d redis
 
 ### 3. Otras operaciones sobre el contenedor creando anteriormente:
 
     # arranque
-    docker start redis-docker
+    docker start redis-container
 
     # detención
-    docker stop redis-docker
+    docker stop redis-container
 
     # detención y posterior arranque
-    docker restart redis-docker
+    docker restart redis-container
 
     # eliminación del contenedor
-    docker rm redis-docker
+    docker rm redis-container
 
     # eliminación de la imagen
-    docker rmi redis-docker
+    docker rmi redis-container
 
 
 ### 4. Otros comandos:
 
     Acceso interno al contenedor:
-    docker exec -it redis-docker bash
+    docker exec -it redis-container bash
 
     Vista de los procesos en ejecución:
     docker ps
