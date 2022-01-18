@@ -92,6 +92,91 @@ A través del comando run y algunos parámetros generamos el contenedor asociado
     Vista de los procesos en ejecución:
     docker ps
 
+    Lista de imagenes
+    docker images list
+
+    Tamaño en disco:
+    docker system df
+    sudo du -sh /var/lib/docker/
+
+### 5. Integración con VSCode y VSCodium
+
+    Se puede utilizar la siguiente extensión:
+    ms-azuretools.vscode-docker
+    https://code.visualstudio.com/docs/containers/overview
+
+
+## Creación de docker image con nodejs
+https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
+
+### 1. Dockerizing a Node.js web app
+### 2. Create the Node.js app
+### 3. Creating a Dockerfile
+    FROM node:16
+
+    # Create app directory
+    WORKDIR /usr/src/app
+
+    # Install app dependencies
+    # A wildcard is used to ensure both package.json AND package-lock.json are copied
+    # where available (npm@5+)
+    COPY package*.json ./
+
+    RUN npm install
+    # If you are building your code for production
+    # RUN npm ci --only=production
+
+    # Bundle app source
+    COPY . .
+
+    EXPOSE 8080
+    CMD [ "node", "server.js" ]
+
+### 4. .dockerignore file
+
+node_modules
+npm-debug.log
+
+### 5. Building your image
+
+    docker build . -t fmq/node-web-app
+
+    docker images
+
+### 6. Run the image
+
+    docker run -p 4000:8080 -d fmq/node-web-app
+
+Print the output of your app:
+
+    # Get container ID
+    $ docker ps
+
+    # Print app output
+    $ docker logs <container id>
+
+    # Example
+    Running on http://localhost:8080
+
+
+    # Enter the container
+    $ docker exec -it <container id> /bin/bash
+
+### 7. Test
+
+    docker ps
+
+    curl -i localhost:4000
+
+
+### 8. Delete
+
+    docker stop <container id>
+
+    docker rm <container id>
+
+    docker rmi fmq/node-web-app
+
 
 
 <div class="footer">
