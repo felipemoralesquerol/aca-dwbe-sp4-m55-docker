@@ -1,3 +1,3 @@
-docker build . -t felipemoralesquerol/node-web-app
+docker build . -t fmq/node-web-app
 
 docker ps
