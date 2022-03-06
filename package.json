@@ -6,7 +6,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build": "docker build . -t fmq/node-web-app"
+    "build": "docker build . -t fmq/node-web-app",
+    "exec": "docker run --name node-fmq -p 4000:8080 -d fmq/node-web-app"
   },
   "dependencies": {
     "express": "^4.17.2",

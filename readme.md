@@ -116,7 +116,7 @@ https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
 FROM node:16
 
 # Create app directory inside image
-WORKDIR /usr/src/app2
+WORKDIR /usr/src/app
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -155,7 +155,7 @@ npm-debug.log
 
 ### 6. Run the image (create the container)
 
-    docker run -p 4000:8080 -d fmq/node-web-app
+    docker run --name node-fmq -p 4000:8080 -d fmq/node-web-app
 
 Print the output of your app:
 
