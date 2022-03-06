@@ -2,7 +2,7 @@
 Docker es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
 
 
-## Recomendaciones prelimibares
+## Recomendaciones preliminares
 Registrarse en https://hub.docker.com/
 
 
@@ -112,38 +112,48 @@ https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
 ### 1. Dockerizing a Node.js web app
 ### 2. Create the Node.js app
 ### 3. Creating a Dockerfile
-    FROM node:16
+```
+FROM node:16
 
-    # Create app directory
-    WORKDIR /usr/src/app
+# Create app directory inside image
+WORKDIR /usr/src/app2
 
-    # Install app dependencies
-    # A wildcard is used to ensure both package.json AND package-lock.json are copied
-    # where available (npm@5+)
-    COPY package*.json ./
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
 
-    RUN npm install
-    # If you are building your code for production
-    # RUN npm ci --only=production
+# apt-get install nano (optional)
+RUN apt-get update && apt-get install -y curl && apt-get install nano
 
-    # Bundle app source
-    COPY . .
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
+RUN npm install -g npm@8.3.1
 
-    EXPOSE 8080
-    CMD [ "node", "server.js" ]
+# Fix vulnerabilities on npm
+RUN npm audit fix
 
+# Bundle app source
+COPY . .
+
+# Expose port access app
+EXPOSE 8080
+
+CMD [ "node", "server.js" ]
+```
 ### 4. .dockerignore file
 
 node_modules
 npm-debug.log
 
-### 5. Building your image
+### 5. Building your image with tag desired
 
     docker build . -t fmq/node-web-app
 
     docker images
 
-### 6. Run the image
+### 6. Run the image (create the container)
 
     docker run -p 4000:8080 -d fmq/node-web-app
 
@@ -169,16 +179,18 @@ Print the output of your app:
     curl -i localhost:4000
 
 
-### 8. Delete
+### 8. Delete container
 
     docker stop <container id>
 
     docker rm <container id>
+
+### 8. Delete image
 
     docker rmi fmq/node-web-app
 
 
 
 <div class="footer">
-    &copy; 2021 Felipe Morales
+    &copy; 2022 Felipe Morales
 </div>

@@ -5,9 +5,12 @@
   "author": "First Last <first.last@example.com>",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "docker build . -t fmq/node-web-app"
   },
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "ip": "^1.1.5",
+    "morgan": "^1.10.0"
   }
 }
