@@ -2,14 +2,16 @@
   "name": "docker_web_app",
   "version": "1.0.0",
   "description": "Node.js on Docker",
-  "author": "First Last <first.last@example.com>",
+  "author": "Felipe Morales felipe.morales.querol@gmail.com",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "build": "docker build . -t fmq/node-web-app",
-    "exec": "docker run --name node-fmq -p 4000:8080 -d fmq/node-web-app"
+    "exec": "docker run --name node-fmq -p 4000:8080 -d fmq/node-web-app",
+    "logs": "docker logs --tail 1000 -f node-fmq"
   },
   "dependencies": {
+    "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "ip": "^1.1.5",
     "morgan": "^1.10.0"

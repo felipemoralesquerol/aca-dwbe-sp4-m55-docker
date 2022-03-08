@@ -190,7 +190,6 @@ Print the output of your app:
     docker rmi fmq/node-web-app
 
 
-
 <div class="footer">
     &copy; 2022 Felipe Morales
 </div>

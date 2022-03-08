@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const ip = require('ip');
 const logger = require('morgan');
@@ -15,7 +17,7 @@ app.get('/', (req, res) => {
     localTime = new Date();
     const localAddress = ip.address();
     const remoteAddress = req.ip;
-    const message = localTime.toLocaleTimeString()+`: Server address in ${localAddress}. Access from ${remoteAddress}`
+    const message = 'v1.0 ' + localTime.toLocaleTimeString()+`: Server address in ${localAddress}. Access from ${remoteAddress}`
    
     console.log(message);
     res.send(message);
