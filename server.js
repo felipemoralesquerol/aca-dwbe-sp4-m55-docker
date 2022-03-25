@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
     const message = 'v1.0 ' + localTime.toLocaleTimeString()+`: Server address in ${localAddress}. Access from ${remoteAddress}`
    
     console.log(message);
-    res.send(message);
+    res.send(message + '\n');
 });
 
 app.listen(PORT, HOST);

@@ -119,16 +119,13 @@ FROM node:16
 WORKDIR /usr/src/app
 
 # Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
 COPY package*.json ./
 
 # apt-get install nano (optional)
 RUN apt-get update && apt-get install -y curl && apt-get install nano
 
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
+
 RUN npm install -g npm@8.3.1
 
 # Fix vulnerabilities on npm
@@ -138,7 +135,7 @@ RUN npm audit fix
 COPY . .
 
 # Expose port access app
-EXPOSE 8080
+EXPOSE ${APP_PORT}
 
 CMD [ "node", "server.js" ]
 ```
@@ -160,23 +157,26 @@ npm-debug.log
 Print the output of your app:
 
     # Get container ID
-    $ docker ps
+    docker ps
 
     # Print app output
-    $ docker logs <container id>
+    docker logs <container id>
 
     # Example
     Running on http://localhost:8080
 
-
     # Enter the container
-    $ docker exec -it <container id> /bin/bash
+    docker exec -it <container id> /bin/bash
 
 ### 7. Test
 
     docker ps
 
     curl -i localhost:4000
+
+    Pruebas de stress (se repiten 1000 veces con una demora de 2 segundos )
+
+    for _ in {1..1000}; do curl 'http://localhost:8080/'; sleep 2; done
 
 
 ### 8. Delete container
@@ -188,6 +188,7 @@ Print the output of your app:
 ### 8. Delete image
 
     docker rmi fmq/node-web-app
+
 
 
 <div class="footer">
