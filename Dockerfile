@@ -22,4 +22,5 @@ COPY . .
 # Expose port access app
 EXPOSE ${APP_PORT}
 
+# CMD commands
 CMD [ "node", "server.js" ]
