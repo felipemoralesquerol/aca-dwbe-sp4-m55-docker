@@ -44,7 +44,8 @@ Link para instalación de Docker engine: https://docs.docker.com/engine/install/
 ### 1. Descarga (pull)
 Descarga de la imagen de redis desde Docker Hub:
 
-    docker pull redis
+   ```docker pull redis```
+   
 
 La salida es la siguiente:
 
@@ -64,7 +65,18 @@ La salida es la siguiente:
 ### 2. Creación de contenedor (container) (run)
 A través del comando run y algunos parámetros generamos el contenedor asociado, y lo arranca automáticamente:
 
-    docker run --name redis-container -p 6380:6379 -d redis
+    docker run --name redis-container -p 6380:6379 -d  -e internal_id 1234 redis
+
+Alternativamente se puede crear utilizando un archivo de configuración, .env-docker en este caso:
+
+    docker run --name redis-container --env-file ./.env.docker -d redis
+
+Como para inspeccionar el contenido de las variables de un container, por ejemplo el valor de internal_id se puede:
+
+    docker exec -it redis-container bash -c 'echo "$internal_id"'
+
+Nota: En este caso debería devolver el mismo valor que el valor del parámetro internal_id en el archivo .env.docker
+
 
 ### 3. Otras operaciones sobre el contenedor creando anteriormente:
 
